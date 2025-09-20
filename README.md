@@ -36,6 +36,9 @@ This portfolio features a variety of projects including:
 
 Check out the live version of this portfolio here: [Live Demo](https://parindyapigeraportfolio.netlify.app)
 
+<img width="1342" height="635" alt="Screenshot (1410)" src="https://github.com/user-attachments/assets/188ba8de-bb31-439e-822f-ca82a090fbe6" />
+<img width="1339" height="638" alt="Screenshot (1411)" src="https://github.com/user-attachments/assets/7b6b7d23-3f8a-4616-9ed6-d4b44cee1dcc" />
+
 ## How to Run Locally
 
 1. Clone the repository:
@@ -48,7 +51,3 @@ cd My-Portfolio
 npm install
 
 npm start
-
-
-<img width="1342" height="635" alt="Screenshot (1410)" src="https://github.com/user-attachments/assets/188ba8de-bb31-439e-822f-ca82a090fbe6" />
-<img width="1339" height="638" alt="Screenshot (1411)" src="https://github.com/user-attachments/assets/7b6b7d23-3f8a-4616-9ed6-d4b44cee1dcc" />
