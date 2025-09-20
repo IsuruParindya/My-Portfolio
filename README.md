@@ -32,6 +32,10 @@ This portfolio features a variety of projects including:
 - HTML / CSS
 - Lucide React (for icons)
 
+## Live Demo
+
+Check out the live version of this portfolio here: [Live Demo](https://parindyapigeraportfolio.netlify.app)
+
 ## How to Run Locally
 
 1. Clone the repository:
