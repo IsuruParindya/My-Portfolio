@@ -5,10 +5,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+    { icon: Github, href: "https://github.com/IsuruParindya", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/isuru-parindya-pigera-a62137338/", label: "LinkedIn" },
+    { icon: Twitter, href: "https://x.com/parindyapigera?s=09", label: "Twitter" },
+    { icon: Mail, href: "mailto:parindyapigera2gmail.com", label: "Email" },
   ];
 
   return (
@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-muted-foreground text-sm">
             <span data-testid="text-copyright">
-              © {currentYear} Portfolio. All rights reserved.
+              © {currentYear} Parindya. All rights reserved.
             </span>
           </div>
 

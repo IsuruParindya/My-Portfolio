@@ -1,76 +1,144 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Download, MapPin } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Home() {
-  const handleHireMe = () => {
-    window.location.href = "mailto:hello@example.com?subject=Let's work together";
+  const [_, setLocation] = useLocation(); // Wouter navigation
+
+  const handleViewProjects = () => {
+    setLocation("/projects");
   };
 
   const handleDownloadResume = () => {
-    // TODO: Add actual resume download functionality
-    console.log("Download resume triggered");
-    // For now, just show an alert
-    alert("Resume download would start here!");
+    const resumeUrl = "/Isuru Parindya - Cv.pdf";
+    const link = document.createElement("a");
+    link.href = resumeUrl;
+    link.download = "Isuru Parindya CV.pdf";
+    link.click();
   };
 
   const skills = [
-    "React", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "Docker", "GraphQL"
+    "Figma",
+    "Wireframing & Mockups",
+    "UI/UX Design",
+    "React",
+    "TypeScript",
+    "HTML & CSS (modern + responsive)",
+    "Tailwind CSS",
+    "Git & Version Control",
+    "Frontend Module Implementation",
+    "UI Testing & Debugging",
   ];
+
+  // Quick stats state for counting animation
+  const [stats, setStats] = useState({ internships: 0, techs: 0, projects: 0 });
+
+  useEffect(() => {
+    const targets = { internships: 7, techs: skills.length, projects: 6 };
+    const duration = 1500; // total animation time in ms
+    const intervalTime = 30; // update every 30ms
+
+    const increments = {
+      internships: targets.internships / (duration / intervalTime),
+      techs: targets.techs / (duration / intervalTime),
+      projects: targets.projects / (duration / intervalTime),
+    };
+
+    const interval = setInterval(() => {
+      setStats((prev) => {
+        const next = {
+          internships: Math.min(prev.internships + increments.internships, targets.internships),
+          techs: Math.min(prev.techs + increments.techs, targets.techs),
+          projects: Math.min(prev.projects + increments.projects, targets.projects),
+        };
+
+        if (
+          next.internships === targets.internships &&
+          next.techs === targets.techs &&
+          next.projects === targets.projects
+        ) {
+          clearInterval(interval);
+        }
+
+        return next;
+      });
+    }, intervalTime);
+
+    return () => clearInterval(interval);
+  }, [skills.length]);
 
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Status Badge */}
-          <div className="flex justify-center mb-8">
-            <Badge 
-              variant="secondary" 
-              className="gap-2 py-2 px-4"
-              data-testid="badge-availability"
+          <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-[1.35] relative inline-block">
+            <span className="uppercase text-5xl sm:text-6xl inline-block align-baseline bg-gradient-to-r from-purple-500 via-purple-400 to-pink-400 bg-clip-text text-transparent relative z-10">
+              UI/UX
+              {/* Curved brush line SVG */}
+              <svg
+                className="absolute -bottom-2 left-0 w-full h-3"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="grad" x1="0" y1="0" x2="100%" y2="0">
+                    <stop offset="0%" stopColor="#a78bfa" />
+                    <stop offset="50%" stopColor="#c084fc" />
+                    <stop offset="100%" stopColor="#f472b6" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,5 C25,10 75,0 100,5"
+                  stroke="url(#grad)"
+                  strokeWidth="2"
+                  fill="transparent"
+                />
+              </svg>
+            </span>{" "}
+            <span
+              className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent font-semibold text-5xl sm:text-6xl"
+              data-testid="text-hero-specialty"
             >
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              Available for work
-            </Badge>
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span data-testid="text-hero-greeting">Full-Stack Developer</span>
-            <br />
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent" data-testid="text-hero-specialty">
-              Building Digital Experiences
+              Engineer
             </span>
+            <div
+              className="text-muted-foreground font-medium text-2xl sm:text-3xl mt-2"
+              data-testid="text-hero-subtitle"
+            >
+              Shaping User Interactions
+            </div>
           </h1>
 
-          {/* Description */}
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed" data-testid="text-hero-description">
-            I create modern, scalable web applications using cutting-edge technologies. 
-            From concept to deployment, I bring ideas to life with clean code and intuitive design.
+          <p
+            className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
+            data-testid="text-hero-description"
+          >
+            UI/UX Engineer | Interface Builder | Creative Coder
           </p>
 
           {/* Location */}
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
             <MapPin className="h-4 w-4" />
-            <span data-testid="text-location">San Francisco, CA</span>
+            <span data-testid="text-location">Sri Lanka</span>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button 
-              size="lg" 
-              onClick={handleHireMe} 
+            <Button
+              size="lg"
+              onClick={handleViewProjects}
               className="gap-2 text-lg px-8"
-              data-testid="button-hero-hire-me"
+              data-testid="button-hero-view-projects"
             >
-              <Mail className="h-5 w-5" />
-              Hire Me
               <ArrowRight className="h-5 w-5" />
+              View Projects
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               onClick={handleDownloadResume}
               className="gap-2 text-lg px-8"
               data-testid="button-download-resume"
@@ -82,16 +150,19 @@ export default function Home() {
 
           {/* Skills Preview */}
           <div className="max-w-3xl mx-auto">
-            <p className="text-sm font-medium text-muted-foreground mb-4" data-testid="text-skills-heading">
+            <p
+              className="text-sm font-medium text-muted-foreground mb-4"
+              data-testid="text-skills-heading"
+            >
               Technologies I work with
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {skills.map((skill, index) => (
-                <Badge 
-                  key={skill} 
-                  variant="outline" 
+                <Badge
+                  key={index}
+                  variant="outline"
                   className="text-sm"
-                  data-testid={`badge-skill-${skill.toLowerCase().replace(/\s+/g, '-')}-${index}`}
+                  data-testid={`badge-skill-${skill.toLowerCase().replace(/\s+/g, "-")}-${index}`}
                 >
                   {skill}
                 </Badge>
@@ -106,16 +177,16 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2" data-testid="text-stat-projects">50+</div>
-              <div className="text-muted-foreground" data-testid="text-stat-projects-label">Projects Completed</div>
+              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.internships)}</div>
+              <div className="text-muted-foreground">Internship Projects</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2" data-testid="text-stat-experience">5+</div>
-              <div className="text-muted-foreground" data-testid="text-stat-experience-label">Years Experience</div>
+              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.techs)}</div>
+              <div className="text-muted-foreground">Technologies Learned</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2" data-testid="text-stat-clients">30+</div>
-              <div className="text-muted-foreground" data-testid="text-stat-clients-label">Happy Clients</div>
+              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.projects)}</div>
+              <div className="text-muted-foreground">Personal Projects</div>
             </div>
           </div>
         </div>
