@@ -39,7 +39,7 @@ export default function About() {
         {/* Profile Section */}
         <div className="text-center mb-16">
           <img
-            src="/images/Me.jpg"
+            src="/images/Isuru.png"
             alt="Isuru"
             className="w-56 h-56 mx-auto rounded-full object-cover mb-6 shadow-lg border-2 border-purple-500 dark:border-slate-500"
           />

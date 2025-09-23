@@ -82,7 +82,7 @@ export default function Projects() {
       technologies: ["React", "Tailwind CSS", "Lucide React", "TypeScript"],
       category: "Frontend",
       projectUrl: "https://parindyapigeraportfolio.netlify.app",
-      githubUrl: "https://github.com",
+      githubUrl: "https://github.com/IsuruParindya/My-Portfolio",
       imageUrl: "/images/Portfolio.png",
     },
   ];

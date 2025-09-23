@@ -81,13 +81,17 @@ export default {
           offline: "rgb(156 163 175)",
         },
       },
-      fontFamily: {
-        sans: ["var(--font-sans)"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
-        brush: ["'Pacifico', cursive"], // <-- brush font added
-      },
+
+      // put animations here, not inside colors
       keyframes: {
+        floatX: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(25px)" },
+        },
+        floatY: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -102,9 +106,18 @@ export default {
         },
       },
       animation: {
+        floatX: "floatX 5s ease-in-out infinite",
+        floatY: "floatY 5s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeInUp: "fadeInUp 0.3s ease-out forwards",
+      },
+
+      fontFamily: {
+        sans: ["var(--font-sans)"],
+        serif: ["var(--font-serif)"],
+        mono: ["var(--font-mono)"],
+        brush: ["'Pacifico', cursive"],
       },
     },
   },

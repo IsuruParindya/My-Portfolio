@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Download, MapPin } from "lucide-react";
+import { ArrowRight, Download, MapPin, MousePointer2 } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Home() {
-  const [_, setLocation] = useLocation(); // Wouter navigation
+  const [_, setLocation] = useLocation();
 
   const handleViewProjects = () => {
     setLocation("/projects");
@@ -32,13 +32,12 @@ export default function Home() {
     "UI Testing & Debugging",
   ];
 
-  // Quick stats state for counting animation
   const [stats, setStats] = useState({ internships: 0, techs: 0, projects: 0 });
 
   useEffect(() => {
     const targets = { internships: 7, techs: skills.length, projects: 6 };
-    const duration = 1500; // total animation time in ms
-    const intervalTime = 30; // update every 30ms
+    const duration = 1500;
+    const intervalTime = 30;
 
     const increments = {
       internships: targets.internships / (duration / intervalTime),
@@ -71,13 +70,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen pt-16">
-      {/* Hero Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-[1.35] relative inline-block">
             <span className="uppercase text-5xl sm:text-6xl inline-block align-baseline bg-gradient-to-r from-purple-500 via-purple-400 to-pink-400 bg-clip-text text-transparent relative z-10">
               UI/UX
-              {/* Curved brush line SVG */}
+
+              {/* Designer Badge */}
+              <span className="absolute right-full top-[90%] sm:top-[82%] md:top-[85%] -translate-y-1/2 -mr-10 sm:-mr-1 md:-mr-2 animate-floatX z-20 flex items-center gap-2">
+                <span className="px-2 py-0.5 text-xs rounded-full bg-gradient-to-r from-purple-500 via-purple-400 to-pink-400 text-white normal-case">
+                  Designer
+                </span>
+                <MousePointer2 className="w-5 h-5 -rotate-12 text-pink-400 scale-x-[-1]" />
+              </span>
+
               <svg
                 className="absolute -bottom-2 left-0 w-full h-3"
                 viewBox="0 0 100 10"
@@ -99,11 +105,20 @@ export default function Home() {
               </svg>
             </span>{" "}
             <span
-              className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent font-semibold text-5xl sm:text-6xl"
+              className="relative bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent font-semibold text-5xl sm:text-6xl"
               data-testid="text-hero-specialty"
             >
               Engineer
+
+              {/* Dev Badge */}
+              <span className="absolute -right-12 sm:-right-10 md:-right-12 -bottom-6 sm:-bottom-5 md:-bottom-6 animate-floatY z-20 flex items-center gap-2">
+                <MousePointer2 className="w-5 h-5 -rotate-6 text-purple-500" />
+                <span className="px-2 py-0.5 text-xs rounded-full bg-purple-600 text-white">
+                  Dev
+                </span>
+              </span>
             </span>
+
             <div
               className="text-muted-foreground font-medium text-2xl sm:text-3xl mt-2"
               data-testid="text-hero-subtitle"
@@ -119,13 +134,11 @@ export default function Home() {
             UI/UX Engineer | Interface Builder | Creative Coder
           </p>
 
-          {/* Location */}
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
             <MapPin className="h-4 w-4" />
-            <span data-testid="text-location">Sri Lanka</span>
+            <span data-testid="text-location">Colombo,Sri Lanka</span>
           </div>
 
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Button
               size="lg"
@@ -148,7 +161,6 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* Skills Preview */}
           <div className="max-w-3xl mx-auto">
             <p
               className="text-sm font-medium text-muted-foreground mb-4"
@@ -172,20 +184,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Stats */}
       <section className="py-16 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.internships)}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                {Math.floor(stats.internships)}
+              </div>
               <div className="text-muted-foreground">Internship Projects</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.techs)}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                {Math.floor(stats.techs)}
+              </div>
               <div className="text-muted-foreground">Technologies Learned</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">{Math.floor(stats.projects)}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                {Math.floor(stats.projects)}
+              </div>
               <div className="text-muted-foreground">Personal Projects</div>
             </div>
           </div>
